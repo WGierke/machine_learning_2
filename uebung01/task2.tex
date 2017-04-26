@@ -1,0 +1,35 @@
+\section*{Task 2}
+
+\subsection*{i}
+
+\begin{gather*}
+\epsilon = |\vec{x}  - \sum_j w_j \vec{\eta_j}|^2 \\
+\epsilon = |\sum_j w_j \vec{x} -  \sum_j w_j \vec{\eta_j}|^2 \\
+\epsilon = |\sum_j w_j (\vec{x} - \vec{\eta_j})|^2 \\
+\epsilon = (\sum_j w_j (\vec{x} - \vec{\eta_j})) (\sum_k w_k (\vec{x} - \vec{\eta_k})) \\
+\epsilon = \sum_j \sum_k w_j w_k  (\vec{x} - \vec{\eta_j}) (\vec{x} - \vec{\eta_k}) \\
+\epsilon = \sum_{j,k} w_j w_k C_{j,k} \\
+\epsilon = \sum_j w_j \sum_k C_{j,k} w_k \\
+\epsilon = \sum_j w_j (C w_k)_k
+\end{gather*}
+where $(C w_k)_k = \sum_j C_{k,j} w_j$
+\begin{gather*}
+\epsilon = \vec{w}^TC\vec{w} \\
+\end{gather*}
+
+\todo[inline]{Finish this task}
+
+\subsection*{ii}
+
+\begin{gather*}
+L(w,\lambda) = w^T Cw + \lambda(w^T 1 - 1) \\
+\frac{\partial L}{\partial \lambda} = w^T  -1 \\
+\frac{\partial L}{\partial w_i} = \frac{\partial}{\partial w_i} \\
+\end{gather*}
+\todo[inline]{Mathbbm is not working}
+\todo[inline]{Finish this task}
+\subsection*{iii}
+
+\todo[inline]{Finish this task}
+
+\clearpage

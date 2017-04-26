@@ -1,0 +1,29 @@
+\section*{Task 3}
+
+\begin{gather*}
+C = \sum_j p_j log(\frac{p_j}{q_j}) \\
+\frac{\partial C}{\partial q_i} = p_i * \frac{\partial}{\partial q_i} log(\frac{p_i}{q_i}) \\
+\frac{\partial C}{\partial q_i} = p_i * \frac{q_j}{p_j} * (-\frac{p_i}{q_i^2}) \\
+\frac{\partial C}{\partial q_i} = -\frac{p_i}{q_i} \\
+\end{gather*}
+
+\begin{gather*}
+\frac{\partial C}{\partial x_i} = \frac{\partial C}{\partial q} \frac{\partial q}{\partial x_i} \\
+\text{As we just have shown}\\
+(\frac{\partial C}{\partial q})_j = \frac{\partial C}{\partial q_j} = -\frac{p_j}{q_j} \\
+\frac{\partial q_j}{\partial x_i} = \frac{\partial}{\partial x_i} \frac{e^{x_i}}{\sum_k e^{x_k}} \\
+= \frac{e^{x_j} \sum_k e^{x_k} \partial _ij - e^x_i e^x_j}{\big[ \sum_k e^{x_k} \big]^2} \\
+= \frac{e^{x_j} \partial _ij}{\sum_k e^{x_k}} - \frac{e^{x_i}}{\sum_k e^{x_k}} \frac{e^{x_j}}{\sum_k e^{x_k}} \\
+= q_j \partial _ij - q_i q_j \\
+\xRightarrow[]{}
+\frac{\partial C}{\partial q} \frac{\partial q}{\partial x_i} = \sum_j (-\frac{p_j}{q_j})(q_j \partial _ij - q_iq_j) \\
+= \sum_j (-\frac{p_j q_j \partial _ij}{q_j})(\frac{p_j q_iq_j}{q_j}) \tag{unsure} \\
+= \sum_j (-p_j \partial _ij)(p_j q_i) \tag{unsure}\\
+= \sum_j p_jq_i - \sum_j p_j \partial _ij \\
+= q_i \sum_j p_j - p_i
+= q_i - p_i
+\end{gather*}
+
+\todo[inline]{Finish this task}
+
+\clearpage
