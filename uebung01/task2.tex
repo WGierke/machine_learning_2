@@ -4,20 +4,18 @@
 
 \begin{gather*}
 \epsilon = |\vec{x}  - \sum_j w_j \vec{\eta_j}|^2 \\
-\epsilon = |\sum_j w_j \vec{x} -  \sum_j w_j \vec{\eta_j}|^2 \\
+\epsilon = |\underbrace{\sum_j w_j}_{=1} \vec{x} -  \sum_j w_j \vec{\eta_j}|^2 \\
 \epsilon = |\sum_j w_j (\vec{x} - \vec{\eta_j})|^2 \\
 \epsilon = (\sum_j w_j (\vec{x} - \vec{\eta_j})) (\sum_k w_k (\vec{x} - \vec{\eta_k})) \\
 \epsilon = \sum_j \sum_k w_j w_k  (\vec{x} - \vec{\eta_j}) (\vec{x} - \vec{\eta_k}) \\
-\epsilon = \sum_{j,k} w_j w_k C_{j,k} \\
-\epsilon = \sum_j w_j \sum_k C_{j,k} w_k \\
-\epsilon = \sum_j w_j (C w_k)_k
+\epsilon = \sum_{j,k} w_j w_k C_{jk} \\
+\epsilon = \sum_j w_j \sum_k C_{jk} w_k \\
+\epsilon = \sum_j w_j (C w)_j
 \end{gather*}
-where $(C w_k)_k = \sum_j C_{k,j} w_j$
+where $(C w)_j = \sum_j C_{kj} w_j$ and $C_{kj} = (\vec{x} - \vec{\eta_k}) (\vec{x} - \vec{\eta_j}) = (\vec{x} - \vec{\eta_j}) (\vec{x} - \vec{\eta_k}) = C_{jk}$
 \begin{gather*}
 \epsilon = \vec{w}^TC\vec{w} \\
 \end{gather*}
-
-\todo[inline]{Finish this task}
 
 \subsection*{ii}
 

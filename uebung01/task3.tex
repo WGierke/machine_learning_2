@@ -1,28 +1,37 @@
 \section*{Task 3}
+\subsection*{i}
 
 \begin{gather*}
-C = \sum_j p_j log(\frac{p_j}{q_j}) \\
-\frac{\partial C}{\partial q_i} = p_i * \frac{\partial}{\partial q_i} log(\frac{p_i}{q_i}) \\
-\frac{\partial C}{\partial q_i} = p_i * \frac{q_j}{p_j} * (-\frac{p_i}{q_i^2}) \\
+C = \sum_j p_j \log(\frac{p_j}{q_j}) \\
+\frac{\partial C}{\partial q_i} = p_i * \frac{\partial}{\partial q_i} \log(\frac{p_i}{q_i}) \\
+\frac{\partial C}{\partial q_i} = p_i * \frac{q_i}{p_i} * (-\frac{p_i}{q_i^2}) \\
 \frac{\partial C}{\partial q_i} = -\frac{p_i}{q_i} \\
 \end{gather*}
 
+\subsection*{ii}
 \begin{gather*}
-\frac{\partial C}{\partial x_i} = \frac{\partial C}{\partial q} \frac{\partial q}{\partial x_i} \\
+\frac{\partial C}{\partial x_i} = \frac{\partial C}{\partial \vec{q}} \frac{\partial \vec{q}}{\partial x_i} \\
 \text{As we just have shown}\\
-(\frac{\partial C}{\partial q})_j = \frac{\partial C}{\partial q_j} = -\frac{p_j}{q_j} \\
-\frac{\partial q_j}{\partial x_i} = \frac{\partial}{\partial x_i} \frac{e^{x_i}}{\sum_k e^{x_k}} \\
-= \frac{e^{x_j} \sum_k e^{x_k} \partial _ij - e^x_i e^x_j}{\big[ \sum_k e^{x_k} \big]^2} \\
-= \frac{e^{x_j} \partial _ij}{\sum_k e^{x_k}} - \frac{e^{x_i}}{\sum_k e^{x_k}} \frac{e^{x_j}}{\sum_k e^{x_k}} \\
-= q_j \partial _ij - q_i q_j \\
+(\frac{\partial C}{\partial \vec{q}})_j = \frac{\partial C}{\partial q_j} = -\frac{p_j}{q_j} \quad .\\
+\text{For the second factor we get} \\
+(\frac{\partial \vec{q}}{\partial x_i})_j = \frac{\partial q_j}{\partial x_i} = \frac{\partial}{\partial x_i} \frac{e^{x_j}}{\sum_k e^{x_k}} \\
+= \frac{e^{x_j} \sum_k e^{x_k} \delta_{ij} - e^x_i e^x_j}{\big[ \sum_k e^{x_k} \big]^2} \\
+= \frac{e^{x_j} \delta_{ij}}{\sum_k e^{x_k}} - \frac{e^{x_i}}{\sum_k e^{x_k}} \frac{e^{x_j}}{\sum_k e^{x_k}} \\
+= q_j \delta_{ij} - q_i q_j \\
 \xRightarrow[]{}
-\frac{\partial C}{\partial q} \frac{\partial q}{\partial x_i} = \sum_j (-\frac{p_j}{q_j})(q_j \partial _ij - q_iq_j) \\
-= \sum_j (-\frac{p_j q_j \partial _ij}{q_j})(\frac{p_j q_iq_j}{q_j}) \tag{unsure} \\
-= \sum_j (-p_j \partial _ij)(p_j q_i) \tag{unsure}\\
-= \sum_j p_jq_i - \sum_j p_j \partial _ij \\
+\frac{\partial C}{\partial \vec{q}} \frac{\partial \vec{q}}{\partial x_i} = \sum_j (-\frac{p_j}{q_j})(q_j \delta_{ij} - q_iq_j) \\
+= \sum_j (-\frac{p_j q_j \delta_{ij}}{q_j})+(\frac{p_j q_iq_j}{q_j}) \\
+= \sum_j (-p_j \delta_{ij})+(p_j q_i)\\
+= \sum_j p_jq_i - \sum_j p_j \delta_{ij} \\
 = q_i \sum_j p_j - p_i
 = q_i - p_i
 \end{gather*}
+
+\subsection*{iii}
+\textbf{Stability/Boundedness:} The first derivative has $q_i$ in the denominator which can become close to zero.
+In that case the gradient would go to infinity.
+The second derivative only consists of a sum which performs better in these aspects. \\
+\textbf{Validity:} To perform a gradient descent we can only vary the projected points $x_i$ so it's more meaningful to calculate the derivative with respect to $x_i$.
 
 \todo[inline]{Finish this task}
 

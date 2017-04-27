@@ -29,13 +29,14 @@ Since $\alpha^2$ in $\tilde{\epsilon}(W)$ does not influence the weights of the 
 \epsilon(W) = \sum_{i} |\vec{X_{i}} - \sum_j W_{ij} \vec{X_{j}}| ^{2} \\
 \tilde{\epsilon}(W) = \sum_{i} |U\vec{X_{i}} - \sum_j W_{ij} U\vec{X_{j}}| ^{2} \\
 \tilde{\epsilon}(W) = \sum_{i} |U\vec{X_{i}} - U(\sum_j W_{ij} \vec{X_{j}})| ^{2} \\
-\tilde{\epsilon}(W) = \sum_{i} |U(\vec{X_{i}} - \sum_j W_{ij} \vec{X_{j}})| ^{2}
+\tilde{\epsilon}(W) = \sum_{i} |U(\vec{X_{i}} - \sum_j W_{ij} \vec{X_{j}})| ^{2} \\
+\tilde{\epsilon}(W) = \sum_{i} |\vec{X_{i}} - \sum_j W_{ij} \vec{X_{j}}| ^{2} = \epsilon(W)
 \end{gather*}
-We can treat $(\vec{X_{i}} - \sum_j W_{ij} \vec{X_{j}})$ as a vector and then we get $\tilde{\epsilon}(W) = \epsilon(W)$, since:
+In the last step we used the fact that an orthogonal matrix does not change the length of a vector because
 \begin{gather*}
-|U\vec{v}|^2 = <U\vec{v}, U\vec{v}> = <\vec{v}, U^T U\vec{v}> = <\vec{v}, \vec{v}> = |\vec{v}|^2
+|U\vec{v}|^2 = \langle U\vec{v}, U\vec{v}\rangle = \langle \vec{v}, U^T U\vec{v}\rangle = \langle \vec{v}, \vec{v}\rangle = |\vec{v}|^2
 \end{gather*}
 
-We get rotation around arbitrary points by combining translation and rotation. If we want to rotate around point $A$, we can first do a translation so that point $A$ becomes the center. Then we rotate in the center and after that we reverse the translation.
+\textbf{General Rotations:} We get a rotation around arbitrary points by combining translation and rotation. If we want to rotate around point $A$, we can first do a translation so that point $A$ becomes the origin. Then we rotate around the origin and after that we reverse the translation.
 
 \clearpage
