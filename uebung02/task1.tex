@@ -2,84 +2,199 @@
 
 \subsection*{a}
 
-We start from the generalised eigenvalue equation as in the lecture: 
+We start from the generalised eigenvalue equation as in the lecture:
 
 \begin{gather*}
  \begin{bmatrix}
 0 & C_{xy} \\
-C_{yx} & 0 
+C_{yx} & 0
 \end{bmatrix}
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix}
 = \alpha
  \begin{bmatrix}
 C_{xx} & 0 \\
-0 & C_{yy} 
+0 & C_{yy}
 \end{bmatrix}
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix} \\
  \begin{bmatrix}
 0 & C_{xy} \\
-C_{yx} & 0 
+C_{yx} & 0
 \end{bmatrix}
  \begin{bmatrix}
 C_{xx} & 0 \\
-0 & C_{yy} 
+0 & C_{yy}
 \end{bmatrix}^{-1}
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix}
 = \alpha
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix} \\
  \begin{bmatrix}
 0 & C_{xy} \\
-C_{yx} & 0 
+C_{yx} & 0
 \end{bmatrix}
  \begin{bmatrix}
 C_{xx}^{-1} & 0 \\
-0 & C_{yy}^{-1} 
+0 & C_{yy}^{-1}
 \end{bmatrix}
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix}
 = \alpha
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix} \\
  \begin{bmatrix}
 0 & C_{xy} C_{yy}^{-1} \\
-C_{yx} C_{xx}^{-y} & 0 
+C_{yx} C_{xx}^{-y} & 0
 \end{bmatrix}
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix}
 = \alpha
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix} \\
  \begin{bmatrix}
 0 & \frac{1}{N} XY^{T} (\frac{1}{N} YY^{T})^{-1} \\
-\frac{1}{N} YX^{T} (\frac{1}{N} XX^{T})^{-1} & 0 
+\frac{1}{N} YX^{T} (\frac{1}{N} XX^{T})^{-1} & 0
 \end{bmatrix}
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix}
 = \alpha
  \begin{bmatrix}
 w_x \\
-w_y 
+w_y
 \end{bmatrix}
 \end{gather*}
+
+
+\subsection*{b}
+
+The solution is given as general eigenvalue problem (from the slides):
+
+\begin{equation}
+    \begin{pmatrix}
+        0 & C_{xy} \\
+        C_{yx} & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        w_x \\ w_y
+    \end{pmatrix}
+    = \alpha \begin{pmatrix}
+        C_{xx} & 0 \\
+        0 & C_{yy}
+    \end{pmatrix}
+    \begin{pmatrix}
+        w_x \\ w_y
+    \end{pmatrix}
+\end{equation}
+
+Using data matricies and renaming $\alpha$ to $\rho$
+\begin{equation}
+    \begin{pmatrix}
+        0 & X Y^T \\
+        Y X^T & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        w_x \\ w_y
+    \end{pmatrix}
+    = \alpha \begin{pmatrix}
+        X X^T & 0 \\
+        0 & Y Y^T
+    \end{pmatrix}
+    \begin{pmatrix}
+        w_x \\ w_y
+    \end{pmatrix}
+\end{equation}
+
+Substituting $w_x = X \alpha_x $ and $w_y = Y \alpha_y $:
+
+\begin{equation}
+    \begin{pmatrix}
+        0 & X Y^T \\
+        Y X^T & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        X \alpha_x \\ Y \alpha_y
+    \end{pmatrix}
+    = \alpha \begin{pmatrix}
+        X X^T & 0 \\
+        0 & Y Y^T
+    \end{pmatrix}
+    \begin{pmatrix}
+        X \alpha_x \\ Y \alpha_y
+    \end{pmatrix}
+\end{equation}
+
+Now, we can move the data matricies into the block matricies on both sides:
+\begin{equation}
+    \begin{pmatrix}
+        0 & X Y^T Y \\
+        Y X^T X & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_x \\ \alpha_y
+    \end{pmatrix}
+    = \alpha \begin{pmatrix}
+        X X^T X & 0 \\
+        0 & Y Y^T Y
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_x \\ \alpha_y
+    \end{pmatrix}
+\end{equation}
+
+Multipling both sides with $ \begin{pmatrix}
+X^T Y^T \end{pmatrix} $ yields:
+
+\begin{equation}
+    \begin{pmatrix}
+        0 & X^T X Y^T Y \\
+        Y^T Y X^T X & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_x \\ \alpha_y
+    \end{pmatrix}
+    = \alpha \begin{pmatrix}
+        X^T X X^T X & 0 \\
+        0 & Y^T Y Y^T Y
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_x \\ \alpha_y
+    \end{pmatrix}
+\end{equation}
+
+Using $A = X^T X $ and $B = Y^T Y$ gives the required form:
+\begin{equation}
+    \begin{pmatrix}
+        0 & A B \\
+        B A & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_x \\ \alpha_y
+    \end{pmatrix}
+    = \alpha \begin{pmatrix}
+        A^2 & 0 \\
+        0 & B^2
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_x \\ \alpha_y
+    \end{pmatrix}
+\end{equation}
