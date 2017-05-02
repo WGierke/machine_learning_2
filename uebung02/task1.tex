@@ -1,3 +1,85 @@
 \section*{Task 1}
 
+\subsection*{a}
 
+We start from the generalised eigenvalue equation as in the lecture: 
+
+\begin{gather*}
+ \begin{bmatrix}
+0 & C_{xy} \\
+C_{yx} & 0 
+\end{bmatrix}
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix}
+= \alpha
+ \begin{bmatrix}
+C_{xx} & 0 \\
+0 & C_{yy} 
+\end{bmatrix}
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix} \\
+ \begin{bmatrix}
+0 & C_{xy} \\
+C_{yx} & 0 
+\end{bmatrix}
+ \begin{bmatrix}
+C_{xx} & 0 \\
+0 & C_{yy} 
+\end{bmatrix}^{-1}
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix}
+= \alpha
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix} \\
+ \begin{bmatrix}
+0 & C_{xy} \\
+C_{yx} & 0 
+\end{bmatrix}
+ \begin{bmatrix}
+C_{xx}^{-1} & 0 \\
+0 & C_{yy}^{-1} 
+\end{bmatrix}
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix}
+= \alpha
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix} \\
+ \begin{bmatrix}
+0 & C_{xy} C_{yy}^{-1} \\
+C_{yx} C_{xx}^{-y} & 0 
+\end{bmatrix}
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix}
+= \alpha
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix} \\
+ \begin{bmatrix}
+0 & \frac{1}{N} XY^{T} (\frac{1}{N} YY^{T})^{-1} \\
+\frac{1}{N} YX^{T} (\frac{1}{N} XX^{T})^{-1} & 0 
+\end{bmatrix}
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix}
+= \alpha
+ \begin{bmatrix}
+w_x \\
+w_y 
+\end{bmatrix}
+\end{gather*}
