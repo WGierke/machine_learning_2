@@ -1,2 +1,39 @@
 \section*{Task 2}
 
+\subsection*{a}
+The original CCA problem is given by:
+\begin{align}
+    \max_{w_x, w_y} & w_x^T C_{xy} w_y \\
+    \text{s.t. } & w_x^T C_{xx} w_x \\
+                 & w_y^T C_{yy} w_y \\
+\end{align}
+Substiting the covariance matricies with the corresponding data matricies.
+\begin{align}
+    \max_{w_x, w_y} & w_x^T X Y^T w_y \\
+    \text{s.t. } & w_x^T X X^T w_x \\
+                 & w_y^T Y Y^T w_y \\
+\end{align}
+
+As argued in exercise 1, we can replace $w_x = X \alpha_x$
+$w_y = Y \alpha_y$. This yields:
+
+\begin{align}
+    \max_{\alpha_x, \alpha_y} & \alpha_x^T X^T X Y^T Y \alpha_y \\
+    \text{s.t. } & \alpha_x^T X^T X X^T X \alpha_x \\
+                 & \alpha_y^T Y^T Y Y^T Y \alpha_y \\
+\end{align}
+
+Substituting $X^T X$ with the Gram matrix $K_X$ and analogously for $K_Y$,
+yields the kernilized CCA problem.
+
+\begin{align}
+    \max_{\alpha_x, \alpha_y} & \alpha_x^T K_X^T K_Y^T \alpha_y \\
+    \text{s.t. } & \alpha_x^T K_X^T K_X^T \alpha_x \\
+                 & \alpha_y^T K_Y^T K_Y^T \alpha_y \\
+\end{align}
+
+The generalized eigenvalue problem stays the same except that $A = K_X$ and $B = K_Y$.
+
+\subsection*{b}
+
+
