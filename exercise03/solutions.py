@@ -43,8 +43,6 @@ def whitening():
 
     utils.render(X_white[:500])
 
-    return X_white
-
 
 def fastICA():
     """
