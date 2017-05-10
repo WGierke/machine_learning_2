@@ -1,0 +1,32 @@
+\section*{Task 1}
+
+\subsection*{a}
+\begin{gather*}
+E[x] = \int p(x) x \mathrm{d}x \\
+Var[x] = \int p(x) x^2 \mathrm{d}x 
+\end{gather*}
+\begin{equation}
+\begin{split}
+\nabla(s(x), \lambda_1, \lambda_2, \lambda_3) = - \int exp(s(x))s(x) \mathrm{d}x \\
+                                                  + \lambda_1(\int exp(s(x)) \mathrm{d}x - 1) \\
+                                                  + \lambda_2 \int exp(s(x)) x \mathrm{d}x \\
+                                                  + \lambda_3 (\int exp(s(x))x^2 \mathrm{d}x - \sigma^2)
+\end{split}
+\end{equation}
+
+\subsection*{b}
+
+\begin{equation}
+\begin{split}
+\frac{\partial \nabla(s(x), \lambda_1, \lambda_2, \lambda_3)}{\partial s(x)} = - exp(s(x))s(x) + s(x) \\
+                                                  + \lambda_1 exp(s(x)) \\
+                                                  + \frac{\partial [\lambda_2 \int exp(s(x)) x \mathrm{d}x]}{\partial s(x)} \\
+                                                  + \frac{\partial [\lambda_3 (\int exp(s(x))x^2 \mathrm{d}x - \sigma^2)]}{\partial s(x)} 
+\end{split}
+\end{equation}
+
+\subsection*{c}
+
+\subsection*{d}
+
+We know $x^{*}$ is Gaussian distributed. From our constraints we know that $E[x] = 0$ and $Var[x] = \sigma^{2}$. With these constraints the differential entropy $H(x)$ for a random variable is maximzed by the Gaussian distribution. Hence there doesn't exist a random variable x with $H(x)>H(x^*)$. Therefore $J(x) >= 0 $. 
