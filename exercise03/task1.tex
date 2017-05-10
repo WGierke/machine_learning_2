@@ -2,30 +2,73 @@
 
 \subsection*{a}
 \begin{gather*}
-E[x] = \int p(x) x \mathrm{d}x \\
-Var[x] = \int p(x) x^2 \mathrm{d}x
+E[x] = \int p(x) x \mathrm{d}x = 0\\
+Var[x] = \int p(x) (x - \cancel{\mu})^2 \mathrm{d}x =  \int p(x) x^2 \mathrm{d}x = \sigma^2\\
+\int p(x)\mathrm{d}x = 1 \quad \Rightarrow \quad \sigma^2 = \int p(x) \sigma^2 \mathrm{d}x
 \end{gather*}
-\begin{equation}
-\begin{split}
-\nabla(s(x), \lambda_1, \lambda_2, \lambda_3) & = - \int exp(s(x))s(x) \mathrm{d}x \\
-                                              &     + \lambda_1(\int exp(s(x)) \mathrm{d}x - 1) \\
-                                              &     + \lambda_2 \int exp(s(x)) x \mathrm{d}x \\
-                                              &     + \lambda_3 (\int exp(s(x))x^2 \mathrm{d}x - \sigma^2)
-\end{split}
-\end{equation}
+\begin{align*}
+\nabla(s(x), \lambda_1, \lambda_2, \lambda_3) & = - \int \exp(s(x))s(x) \mathrm{d}x \\
+                                              &     + \lambda_1(\int \exp(s(x)) \mathrm{d}x - 1) \\
+                                              &     + \lambda_2 \int \exp(s(x)) x \mathrm{d}x \\
+                                              &     + \lambda_3 (\int \exp(s(x))(x^2 - \sigma^2) \mathrm{d}x)
+\end{align*}
 
 \subsection*{b}
 
-\begin{equation}
-\begin{split}
-    \frac{\partial \nabla(s(x), \lambda_1, \lambda_2, \lambda_3)}{\partial s(x)} & = - exp(s(x))s(x) + s(x) \\
-                                                   & + \lambda_1 exp(s(x)) \\
-                                                   & + \frac{\partial [\lambda_2 \int exp(s(x)) x \mathrm{d}x]}{\partial s(x)} \\
-                                                   & + \frac{\partial [\lambda_3 (\int exp(s(x))x^2 \mathrm{d}x - \sigma^2)]}{\partial s(x)}
-\end{split}
-\end{equation}
+\begin{align*}
+    \frac{\partial \nabla(s(x), \lambda_1, \lambda_2, \lambda_3)}{\partial s(x)} & = - \int \exp(s(x))(1 + s(x)) \mathrm{d}x \\
+                                                   & + \lambda_1 \int \exp(s(x)) \mathrm{d}x \\
+                                                   & + \lambda_2 \int \exp(s(x)) x \mathrm{d}x \\
+                                                   & + \lambda_3 (\int \exp(s(x))(x^2 - \sigma^2) \mathrm{d}x)\\
+ & = \int \exp(s(x))\left(-(1 + s(x)) + \lambda_1 + \lambda_2 x + \lambda_3 (x^2 - \sigma^2) \right)\mathrm{d}x \\
+\end{align*}
+
+By setting this derivative to zero, we can show that at the extremum, $s(x)$ is a  quadratic function.
+\begin{align*}
+&\frac{\partial \nabla(s(x), \lambda_1, \lambda_2, \lambda_3)}{\partial s(x)}  \overset{!}{=} 0\\
+\Leftrightarrow \quad & \int \exp(s(x))\left(-(1 + s(x)) + \lambda_1 + \lambda_2 x + \lambda_3 (x^2 - \sigma^2) \right)\mathrm{d}x = 0\\
+\Leftrightarrow \quad & \int \exp(s(x)) \left( -1 + \lambda_1 + \lambda_2 x + \lambda_3 (x^2 - \sigma^2) \right)\mathrm{d}x = \int \exp(s(x))s(x)\mathrm{d}x\\
+\Rightarrow \quad & s(x) = -1 + \lambda_1 + \lambda_2 x + \lambda_3 (x^2 - \sigma^2)
+\end{align*}
 
 \subsection*{c}
+\begin{align}
+p(x) = \exp(s(x)) = \exp(-1 + \lambda_1 + \lambda_2 x + \lambda_3 (x^2 - \sigma^2))
+\end{align}
+
+Using the constraints, we can determine the $\lambda$-values to show that this is actually a Gaussian with zero mean and variance $\sigma^2$.
+
+\begin{align*}
+1 &= \int p(x)\mathrm{d}x =  \int \exp(-1 + \lambda_1 + \lambda_2 x + \lambda_3 (x^2 - \sigma^2)) \mathrm{d}x\\
+&= \sqrt{\frac{\pi}{-\lambda_3}}\exp\left(\frac{\lambda_2^2}{-4\lambda_3}+(\lambda_1-1 - \lambda_3\sigma^2)\right)
+\end{align*}
+
+We can then use the variance constraint
+\begin{align*}
+& \int \exp(s(x)) x^2 \mathrm{d}x = \sigma^2\\
+\Leftrightarrow \quad & \frac{1}{-2\lambda_3}\underbrace{ \sqrt{\frac{\pi}{-\lambda_3}}\exp\left(\frac{\lambda_2^2}{-4\lambda_3}+(\lambda_1-1- \lambda_3\sigma^2)\right)}_{=1} = \sigma^2\\
+\Leftrightarrow \quad & \lambda_3 = -\frac{1}{2\sigma^2}
+\end{align*}
+
+Hence, our distribution becomes
+\begin{align*}
+p(x) = \exp(-1/2 + \lambda_1 + \lambda_2 x - \frac{x^2}{2\sigma^2})
+\end{align*}
+and the first constraint
+\begin{align*}
+& \sqrt{\frac{\pi}{-\lambda_3}}\exp\left(\frac{\lambda_2^2}{-4\lambda_3}+(\lambda_1-1 - \lambda_3\sigma^2)\right) = 1\\
+\Leftrightarrow \quad &  \sqrt{2\pi\sigma^2}\exp\left(\lambda_2^2\sigma^2/2+(\lambda_1 - 1/2)\right) = 1\\
+\Leftrightarrow \quad & (\lambda_1 - 1/2) = -\ln \left(\sqrt{2\pi\sigma^2}\right)\\
+\Leftrightarrow \quad & \lambda_1 - 1/2 = -\ln \left(\sqrt{2\pi\sigma^2}\right) -\lambda_2^2\sigma^2/2
+\end{align*}
+which yields
+\begin{align*}
+p(x) = \exp\left(-\ln \left[\sqrt{2\pi\sigma^2}\right] + \lambda_2 x - \frac{x^2}{2\sigma^2}\right) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(\lambda_2 x - \frac{x^2}{2\sigma^2}\right)
+\end{align*}
+Since the mean is zero, $\lambda_2$ has to disappear (otherwise the Gaussian would be shifted). Therefore, in the end we obtain the expected result
+\begin{align}
+p(x) =  \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(- \frac{x^2}{2\sigma^2}\right)
+\end{align}
 
 \subsection*{d}
 
