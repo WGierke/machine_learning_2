@@ -2,7 +2,6 @@
 # -*- coding: iso-8859-15 -*-
 
 import numpy as np
-import math
 import utils
 
 
@@ -44,7 +43,7 @@ def whitening():
     utils.render(X_white[:500])
 
 
-def fastICA():
+def fastICA(X):
     """
     - Implement the FastICA method described in the paper, and run it for 64 iterations.
     - Print the value of the objective function at each iteration.
@@ -59,45 +58,41 @@ def fastICA():
         a = 1.5
         return np.tanh(a * x)
 
-    def g_(x):
+    def gprime(x):
         a = 1.5
-        return a * (1 - math.pow(np.tanh(a * x), 2))
+        return a * (1 - (np.dot(np.tanh(a * x), np.tanh(a * x))))
 
     def J(y):
-        v = np.random.normal()
-        return math.pow(G(y) - G(v), 2)  # TODO: implement E{}
+        v = np.random.normal(size=y.shape)
+        return np.sum(np.square(y - v))
 
-    def normalize(v):
-        norm = np.linalg.norm(v)
-        if norm == 0:
-            return v
-        return v/norm
+    N_COMP = 100
+    N_ITERATIONS = 64
+    INTERESTIGN_ITERATIONS = [0, 1, 3, 7, 15, 31, 63]
+    INTERESTIGN_COMPONENT = 1
 
-    X = utils.load()
-    X = get_whitened_data(X)
-    n = 64
-    components = 100
-    N, M = X.shape
-    ws = []
-    g_vec = np.vectorize(g)
-    g__vec = np.vectorize(g_)
-    vec_1 = np.array([1 for x in range(M)])
-    vec_1.shape = (M, 1)
+    X = get_whitened_data(X)[:N_COMP]
+    w_init = np.random.normal(size=(N_COMP, N_COMP))
+    W = np.zeros((N_COMP, N_COMP), dtype=float)
 
-    for p in range(components):
-        w_p = np.random.rand(N)
-        ws.append(w_p)
-        for _ in range(n):
-            w_p = np.multiply(1/float(M), np.dot(X, g_vec(np.dot(w_p.T, X)).T))
-            w_p -= np.multiply(1/float(M), np.multiply(np.dot(g__vec(np.dot(w_p.T, X)), vec_1), w_p))
-            sum_ = 0
-            for j in range(p):
-                sum_ += np.multiply(np.dot(w_p.T, ws[j]), ws[j])
-            w_p -= sum_
-            w_p = normalize(w_p)
-            print np.sum(w_p)
-        return
+    for j in range(N_COMP):
+        w = w_init[j, :].copy()
+        W[j, :] = w
 
+    for i in range(N_ITERATIONS):
+        for j in range(N_COMP):
+            w = W[j, :]
+            wtx = np.dot(w.T, X)
+            gwtx = g(wtx)
+            g_wtx = gprime(wtx)
+            w1 = (X * gwtx).mean(axis=1) - g_wtx.mean() * w
 
-if __name__ == '__main__':
-    fastICA()
+            w1 /= np.sqrt((w1**2).sum())
+            w = w1
+            if j == INTERESTIGN_COMPONENT and i in INTERESTIGN_ITERATIONS:
+                utils.scatterplot(np.dot(W[j-1, :].T, X[:N_COMP]), np.dot(W[j, :].T, X[:N_COMP]), xlabel='pixel 0, red', ylabel='pixel 0, green')
+
+            W[j, :] = w
+        print "it = " + str(i) + "\tJ(W) = " + str(J(np.dot(W, X[:N_COMP])))
+
+    utils.render(np.dot(W, X[:N_COMP])[:500])
