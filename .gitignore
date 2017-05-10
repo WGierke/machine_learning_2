@@ -218,3 +218,10 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# Python
+*.pyc
+# Jupyter Notebooks
+.ipynb_checkpoints/
+# Virtual Environment
+venv
