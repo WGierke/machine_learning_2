@@ -5,7 +5,17 @@
 \begin{gather*}
 \frac{\partial E}{\partial V^T} = \sum^N_{i=1} 2(x_i - W V^T x_i) (-W x_i) \\
 \end{gather*}
+Therfore, deriving wrt. V:
+
+\begin{gather*}
+    \frac{\partial E}{\partial V} = \sum^N_{i=1} (2(x_i - W V^T x_i) (-W x_i)^T \\
+    = -2 \sum^N_{i=1} (W x_i)^T (x_i - W V^T x_i)^T
+\end{gather*}
 
 \subsection*{b}
 
-
+Before, we had to solve a optimization problem to find suitable sources. Now, we
+can utilize the encoder network to find the source codes. As long as the
+encoder network is small, we can find the codes more efficiently than by solving
+the optimization problem. The computational costs grow linearly with the complexity
+of the networks.
