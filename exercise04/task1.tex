@@ -1,0 +1,14 @@
+\section*{Task 1}
+
+\subsection*{a}
+
+\begin{gather*}
+E = \eta ||W||^2_F + \sum^N_{i=1} ||x_i - W s_i||^2 + \lambda ||s_i||_1 \\
+\frac{\partial E}{\partial W} = 2 \eta W + \sum^N_{i=1} 2(x_i - W s_i) (- s_i)^T \\
+\frac{\partial E}{\partial W} = 2 \eta W  -2\sum^N_{i=1} (x_i - W s_i) s_i^T \\
+\end{gather*}
+
+\begin{gather*}
+\frac{\partial E}{\partial s_i} = \sum^N_{i=1} 2(x_i - W s_i) (-W) + \lambda \\
+\end{gather*}
+
