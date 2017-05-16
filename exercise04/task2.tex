@@ -2,17 +2,23 @@
 
 \subsection*{a}
 
-To get the same optimization problem we look at the last term:
+To get the same optimization problem, the only thing that has to be adapted is the last term, since instead of $||\vec s_i||_1$ we have $||\vec r_i||^2$.
+The connection between $\vec r$ and $\vec s$ is given as $\vec s_i = \vec g(\vec r_i)$, so the condition that needs to be fulfilled is
+\begin{align*}
+\forall^N_{i=1}: \quad ||\vec r_i||^2 \overset{!}{=} ||\vec g(\vec r_i)||_1 \quad ,
+\end{align*}
+where the $\vec s_i$ only have positive components.
 
-\begin{gather*}
-||r_i||^2 \ \forall^N_{i=1}: r_i\in\mathbb{R}^h \overset{!}{=} ||s_i||_1  \ \forall^N_{i=1}: s_i \geq 0\\
-||r_i||^2 \ \forall^N_{i=1}: r_i\in\mathbb{R}^h \overset{!}{=} ||s_i||_1  \ \forall^N_{i=1}: s_i \geq 0\\
-\left( \sqrt{\sum^h_{i=1} |r_i|^2} \right)^2 \ \forall^N_{i=1}: r_i\in\mathbb{R}^h \overset{!}{=} \sum^h_{i=1} |s_i| \ \forall^N_{i=1}: s_i \geq 0\\
-\sum^h_{i=1} |r_i|^2 \ \forall^N_{i=1}: r_i\in\mathbb{R}^h \overset{!}{=} \sum^h_{i=1} |s_i| \ \forall^N_{i=1}: s_i \geq 0\\
-\sum^h_{i=1} |r_i^2| \ \forall^N_{i=1}: r_i\in\mathbb{R}^h \overset{!}{=} \sum^h_{i=1} |s_i| \ \forall^N_{i=1}: s_i \geq 0\\
-\end{gather*}
+This condition can be met by choosing the components of $\vec{g}(\vec{r}_i)$ as
+\begin{align*}
+g_j(\vec{r}_i) = r_{ij}^2
+\end{align*}
 
-If we now consider the second terms $\sum^N_{i=1} ||x_i - W g(r_i)||^2$ and $\sum^N_{i=1} ||x_i - W s_i||^2 $ in the equations we see that we need to set $g(x) = x^2$.
+On the one hand, the square ensures that all components are positive, and on the other hand we get
+\begin{align*}
+||\vec s_i||_1 = \sum^h_{j=1} |s_{ij}| = \sum^h_{j=1} |g_j(\vec{r}_i)|
+= \sum^h_{j=1} |r_{ij}^2| = \sum^h_{j=1} r_{ij}^2 = ||\vec r_i||^2 \quad .
+\end{align*}
 
 \subsection*{b}
 
