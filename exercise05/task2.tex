@@ -1,0 +1,19 @@
+\section*{2}
+Using the new definition
+\begin{align*}
+	y_t = [w * x]_t = \sum_s w_s x_{t-s}\quad ,
+\end{align*}
+we get for the derivatives:
+\begin{align*}
+	\frac{\partial E}{\partial x_u} 
+	&= \sum_t \frac{\partial E}{\partial y_t} \frac{\partial y_t}{\partial x_u}
+	= \sum_t \frac{\partial E}{\partial y_t} \sum_s w_s \frac{\partial x_{t-s}}{\partial x_u}\\
+	&= \sum_{t,s} \frac{\partial E}{\partial y_t} w_s 1_{u=t-s}
+	= \sum_t \frac{\partial E}{\partial y_t} w_{t-u} = \left[\frac{\partial E}{\partial y} \star w\right]_{-u}\\
+	\frac{\partial E}{\partial w_u} 
+	&= \sum_t \frac{\partial E}{\partial y_t} \frac{\partial y_t}{\partial w_u}
+	= \sum_t \frac{\partial E}{\partial y_t} \sum_s \frac{\partial w_s}{\partial w_u} x_{t-s}\\
+	&= \sum_{t,s} \frac{\partial E}{\partial y_t} x_{t-s} 1_{s=u}
+	= \sum_t \frac{\partial E}{\partial y_t} x_{t-u} 
+	= \left[\frac{\partial E}{\partial y} \star x\right]_{-u}
+\end{align*}
