@@ -1,6 +1,38 @@
 \section*{Task 1}
 
 \subsection*{a}
-\includegraphics[clip, trim=0.5cm 2.5cm 0.5cm 4cm, width=0.90\textwidth]{KernelProof.pdf}
+\lstinputlisting[language=Python]{kernel.py}
 
 \subsection*{b}
+
+The kernel is given by:
+
+\begin{equation}
+    k(x, y) = \lVert x * y \rVert ^ 2
+\end{equation}
+
+To be positive semi-definite, the kernel has to fulfill:
+
+\begin{equation}
+    \sum_{i=1}^n \sum_{j=1}^n c_i c_j k(x_i, x_j)
+\end{equation}
+for $n \in \N$, $\{x_1, \ldots, x_n\} \in \R^{d \times n} $ and $c \in \R^n$.
+\\
+\\
+For the given kernel:
+\begin{align}
+    \sum_{i=1}^n \sum_{j=1}^n c_i c_j \lVert x_i * x_j \rVert ^ 2  \\
+    = \sum_{i=1}^n \sum_{j=1}^n c_i c_j \sum_{t=0}^T (x_i * x_j)_t^2  \\
+\end{align}
+
+We can rewrite the convolution as fourier transformation.
+Here, $\hat x_i $ denotes the fourier transform of $x_i$ and $F^{-1}$ the inverse
+fourier transformation.
+\begin{align}
+    & \lVert x_i * x_j \rVert ^ 2 = \\
+    &    = \Vert F^{-1}(\hat x_i \cdot  \hat x_j) \rVert ^ 2  \\
+\end{align}
+
+We assume that the feature space, ask for in the exercise, is connected to the
+fourier transformation of x. However, the inverse fourier transform obstruct
+us to separate the kernel into two feature maps.
