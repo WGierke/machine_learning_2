@@ -3,8 +3,17 @@
 $\forall_{i=1}^N : s_i = u_i^T y$ \\ \\
 Show: $\sum_{i=1}^N s_i^2 = ||y||^2$
 
+Let $U = [u_1 \ldots u_N]$, then we can rewrite the above condition with
+\begin{equation}
+s = U^T y
+\end{equation}
+where $s = [s_i \ldots s_N]^T$.
+
+Now we can rearrange $\sum_{i=1}^N s_i^2$ esaily to give $||y||^2$.
 \begin{gather*}
-s = U^T y \\ 
 \sum_{i=1}^N s_i^2 = s^Ts = (U^T y)^T (U^T y) \\
 = y^T U U^T y = y^Ty = ||y||^2
 \end{gather*}
+As we know that $U$ is an orthogonal matrix (because it columns are eigenvectors of $K$),
+$U U^T = I $ where $I$ is the identity matrix.
+
