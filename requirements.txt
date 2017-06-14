@@ -2,3 +2,5 @@ jupyter
 numpy
 scipy
 matplotlib
+sklearn
+
