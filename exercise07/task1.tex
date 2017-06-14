@@ -1,0 +1,81 @@
+
+\subsection*{1b}
+
+For $M=1$ the equation becomes:
+
+\begin{equation}
+    \beta_1 \sum_{n=1}^{N} \mathbbm{1}_{u_{1,n}(x) = u_{1,n}(x')}
+\end{equation}
+
+We map every entery of x to:
+
+\begin{equation}
+g(x_i) = \begin{pmatrix}
+    \mathbbm{1}_{x_i = A} \\
+    \mathbbm{1}_{x_i = C} \\
+    \mathbbm{1}_{x_i = G} \\
+    \mathbbm{1}_{x_i = T}
+\end{pmatrix}
+\end{equation}
+That means an A is mapped to $[1, 0, 0, 0]$ and analogously G is mapped to $[0, 0, 1, 0]$.
+
+The feature map is a concatenation of all $g(x_i)$ vectors and we have to account
+to the factor $\beta_1$:
+\begin{equation}
+\phi(x) = \sqrt{\beta_1} \begin{pmatrix}
+    g(x_1) \\
+    \ldots \\
+    g(x_N)
+\end{pmatrix}
+\end{equation}
+
+The the dot product of two feature maps is:
+\begin{align}
+    \phi(x)^T \phi(x') &=
+       \sqrt{\beta_1} \begin{pmatrix} g(x_1) & \ldots & g(x_N) \end{pmatrix}
+       \sqrt{\beta_1}
+       \begin{pmatrix}
+            g(x'_1) \\
+            \ldots \\
+            g(x'_N)
+       \end{pmatrix} \\
+       & = \beta_1 \sum_{n=1}^{N} g(x_n)^T  g(x'_n)
+\end{align}
+
+And here, we observe that $g(x_n)^T g(x'_n) = 1$ iff $u_{1,n}(x) = u_{1,n}(x')$.
+
+\subsection*{1c}
+
+For $M=2$, $\beta_1=0$, and $\beta_2=1$ the equation becomes:
+
+\begin{equation}
+    \sum_{n=1}^{N-1} \mathbbm{1}_{u_{2,n}(x) = u_{2,n}(x')}
+\end{equation}
+
+Similiar to the exercise before, we can express $u_{2,n}(x) = u_{2,n}(x')$
+as an dot product between binary vectors. Here we encode each pair of letters
+an 16-dimensional one-hot vector.
+
+\begin{equation}
+    g(x_i) = \begin{pmatrix}
+            \mathbbm{1}_{x_i = A \land x_{i+1} A} \\
+            \mathbbm{1}_{x_i = A \land x_{i+1} B} \\
+            \ldots \\
+            \mathbbm{1}_{x_i = A \land x_{i+1} T} \\
+            \mathbbm{1}_{x_i = B \land x_{i+1} A} \\
+            \ldots \\
+            \mathbbm{1}_{x_i = B \land x_{i+1} T} \\
+            \ldots \\
+            \mathbbm{1}_{x_i = T \land x_{i+1} T} \\
+    \end{pmatrix}
+\end{equation}
+
+Using the same argument as before, this is identical to $u_{2,n}(x) = u_{2,n}(x')$.
+The feature maps is therefore:
+\begin{equation}
+\phi(x) =  \begin{pmatrix}
+    g(x_1) \\
+    \ldots \\
+    g(x_N)
+\end{pmatrix}
+\end{equation}
