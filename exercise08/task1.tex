@@ -6,6 +6,14 @@
     \label{fig:name}
 \end{figure}
 
+\subsection*{1b}
+We have one coin each for the hidden states in our graph that determines if we change the hidden state or stay with our current hidden state. 
+Then we have one visible coin for each hidden state that determines in which visible state we end up.  
+That means our experiment starts with one hidden coin. That coin throw determines if we exchange our hidden coin with the other hidden coin. We remember which coin we got.
+Based on which hidden coin we currently got we choose our visible coin and throw it to get the next result for our experiment.
+After that we can repeat these steps as often as we need to by using our current hidden coin to get the final result. 
+
+
 \subsection*{1c}
 
 Compute:
@@ -62,7 +70,7 @@ Finally, we can compute the posterior probability $P((q_1, q_2 )| (O_1, O_2) = (
 \begin{tabular}{c | c | c }
     $q_1$ & $q_2$ & $P((q_1, q_2 )| (O_1, O_2) = (T, T))$ \\ \hline
     1       & 1   & $ 0.064 / 0.496 = 4 / 31 $\\
-    1       & 2   & $ 0.432 / 0.496 = 2 / 31$ \\
+    1       & 2   & $ 0.432 / 0.496 = 27 / 31$ \\
 \end{tabular}
 \end{center}
 
