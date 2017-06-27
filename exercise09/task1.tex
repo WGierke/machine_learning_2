@@ -1,0 +1,161 @@
+\begin{align}
+    \min R^2  & + \frac{1}{n \nu} \sum_{i=1}^n \xi_i \\
+              & \text{s.t. } \forall_{i=1}^n: || \phi(x_i) - c||^2 \le R^2 + \xi_i
+              \text{ and } \xi_i \ge 0
+\end{align}
+
+Using the Lagrage multiplier equations for inequalities (see. Bishop appendix E):
+If we have a problem $ \max  f(x)  \textrm{  s.t. } g(x) \ge 0$, then the solution is:
+\begin{equation}
+    \begin{split}
+        L(x, \lambda) & = f(x) + \lambda g(x) \\
+        \textrm{s.t } & g(x) \ge 0 \\
+                      & \lambda \ge 0 \\
+                      & \lambda g(x) = 0 \\
+    \end{split}
+\end{equation}
+
+As we have a minimization problem, we swap the sign of $f(x)$:
+\begin{align}
+    \label{eq:lagrange}
+    \Lambda(R, c, \bm{\xi}, \bm{\alpha}, \bm{\beta}) = - R^2  & - \frac{1}{n \nu} \sum_{i=1}^n \xi_i
+               + \sum_{i=1}^n \alpha_i \left( R^2 + \xi_i - ||\phi(x_i) - c||^2 \right)
+            +  \sum_{i=1}^n \beta_i \xi_i \\
+        \text{s.t. } \forall_{i=1}^n:& \alpha_i \left( R^2 + \xi_i  - ||\phi(x_i) - c||^2 \right) = 0 \\
+                   &  \alpha_i \ge 0 \\
+        \label{eq:lbeta_xi}
+                   &  \beta_i \xi_i = 0 \\
+                   &  \beta_i \ge 0
+\end{align}
+
+
+Deriving $\Lambda$ after every argument:
+
+\begin{equation}
+    \label{eq:dc}
+    \frac{\partial \Lambda}{\partial c} =
+               2 \sum_{i=1}^n \alpha_i \left(\phi(x_i) - c \right) \stackrel{!}{=} 0
+\end{equation}
+
+\begin{equation}
+    \label{eq:dR}
+    \frac{\partial \Lambda}{\partial R} =
+        - 2 R + 2 \sum_{i=1}^n \alpha_i R =
+        - 2 R \left( 1 - \sum_{i=1}^n \alpha_i \right) \stackrel{!}{=} 0
+\end{equation}
+
+\begin{equation}
+    \label{eq:dxi}
+    \frac{\partial \Lambda}{\partial \xi_l} =
+        - \frac{1}{n \nu} + \alpha_l + \beta_l \stackrel{!}{=} 0
+\end{equation}
+
+\begin{equation}
+    \label{eq:dalpha}
+    \frac{\partial \Lambda}{\partial \alpha_l} =
+        R^2 +  \xi_i - || \phi(x_i) - c||^2  \stackrel{!}{=} 0
+\end{equation}
+
+\begin{equation}
+    \label{eq:dbeta}
+    \frac{\partial \Lambda}{\partial \beta_l} =
+        \xi_l \stackrel{!}{=} 0
+\end{equation}
+
+Assume $R \neq 0$, eq. \eqref{eq:dR} immediatly gives:
+\begin{align}
+    - 2 R \left( 1 - \sum_{i=1}^n \alpha_i \right) = 0  \quad | \quad \cdot \left( - \frac{1}{2 R} \right) \\
+    \sum_{i=1}^n \alpha_i  = 1
+\end{align}
+
+\eqref{eq:dxi} gives us:
+\begin{align}
+    \label{eq:n_eq_alpha_beta}
+    \forall_{i=0}^n \quad \frac{1}{n \nu} =  \alpha_i + \beta_i
+\end{align}
+As we know that $\alpha_i, \beta_i  \ge 0 $, we can remove $\beta_i$ and
+introduce an inequality:
+\begin{align}
+    \label{eq:}
+    \forall_{i=0}^n \quad \frac{1}{n \nu} \ge  \alpha_i \ge 0
+\end{align}
+We can rearange \eqref{eq:dc} to obtain:
+
+\begin{align}
+    2 \sum_{i=1}^n \alpha_i \left(\phi(x_i) - c \right) &= 0 \\
+    2 c \sum_{i=1}^n \alpha_i  - \sum_{i=1}^n \phi(x_i) - c  &= 0 \\
+     2 c \underbrace{\sum_{i=1}^n \alpha_i}_{=1}  &= 2 \sum_{i=1}^n \alpha_i \phi(x_i)    \\
+     c &= \sum_{i=1}^n \alpha_i \phi(x_i)
+\end{align}
+
+
+Now, we can use this result in \eqref{eq:dalpha}:
+\renewcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\begin{align}
+    \label{eq:}
+        R^2 +  \xi_i & - \norm{\phi(x_i) - c}^2  = 0 \\
+        \iff &
+        R^2 +  \xi_i - \underbrace{\norm{\phi(x_i) -\sum_{l=1}^n \alpha_l \phi(x_l) }^2}_{}  = 0 \\
+\end{align}
+
+The norm is given by $\norm{a - b}^2 = \sum_{d=1} (a_d - b_d)^2
+= \sum_{d=1} (a_d^2 - 2 a_d b_d + b_d^2 ) $ where $a_d$ stands for the d-th dimension of a.
+
+Lets look that happens with the norm on a particular dimension $d$:
+\begin{align}
+    \label{eq:}
+     &\left( \phi_d(x_{i})  - \sum_{l=1}^n \alpha_l \phi_d(x_l) \right)^2 =  \\
+    & = \phi_d(x_i)^2 - 2 \phi_d(x_i) \sum_{l=1}^n \alpha_l \phi_d(x_l)
+    + \left(\sum_{l=1}^n \alpha_l \phi_d(x_l) \right)^2  \\
+\end{align}
+
+We can now build compute the norm by summing this term of all dimensions:
+\begin{align}
+    \label{eq:}
+    \sum_d \left( \phi_d(x_i)^2 - 2 \phi_d(x_i) \sum_{l=1}^n \alpha_l \phi_d(x_l)
+    + \left(\sum_{l=1}^n \alpha_l \phi_d(x_l) \right)^2 \right) = \\
+    \phi(x_i)^T \phi(x_i) - 2 \sum_d \sum_{l=1}^n \alpha_l \phi_d(x_i) \phi(x_l) +
+     \sum_{l=1} \sum_{j=1} \alpha_l \alpha_j \phi(x_l)^T \phi(x_j) = \\
+\end{align}
+
+Using this intermediate result, we can substitude it into the Lagrange equation \eqref{eq:lagrange}.
+Then it will appear inside of the sum  $\sum_{i=1}^n \alpha_i [\ldots]$:
+\begin{align}
+    \sum_{i=1}^n \alpha_i & \left(
+    \phi(x_i)^T \phi(x_i) - 2 \sum_d \sum_{l=1}^n \alpha_l \phi_d(x_i) \phi(x_l) +
+         \sum_{l=1}^n \sum_{j=1}^n \alpha_l \alpha_j \phi(x_l)^T \phi(x_j)
+   \right) \\
+    = & \sum_{i=1}^n \alpha_i k(x_i, x_i) - 2
+    \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j \phi(x_i)^T \phi(x_j) +
+    \underbrace{\sum_{i=1}^n \alpha_i}_{=1} \sum_{l=1}^n \sum_{j=1}^n \alpha_l \alpha_j \phi(x_l)^T \phi(x_j) \\
+    = & \sum_{i=1}^n \alpha_i k(x_i, x_i) -
+    \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j k(x_i, x_j)
+\end{align}
+
+Now it is time to rearange the lagrange equation:
+
+\begin{align}
+    \label{eq:}
+    - R^2  & - \frac{1}{n \nu} \sum_{i=1}^n \xi_i
+               + \sum_{i=1}^n \alpha_i \left( R^2 + \xi_i - ||\phi(x_i) - c||^2 \right)
+            +  \sum_{i=1}^n \beta_i \xi_i = \\
+    = - R^2  & - \frac{1}{n \nu} \sum_{i=1}^n \xi_i
+               + R_2 \underbrace{\sum_{i=1}^n \alpha_i }_{= 1}
+               + \sum_{i=1}^n ( \underbrace{\alpha_i + \beta_i}_{=\frac{1}{n\nu}
+               \textrm{ by \eqref{eq:n_eq_alpha_beta}}} ) \xi_i
+               - \sum_{i=1}^n \alpha_i ||\phi(x_i) - c||^2 \\
+    = - & \sum_{i=1}^n \alpha_i ||\phi(x_i) - c||^2 \\
+    = - & \sum_{i=1}^n \alpha_i k(x_i, x_i) +
+    \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j k(x_i, x_j)
+\end{align}
+
+As we solved before a minimization problem, we can switch to a maximization problem.
+Together with all the auxiliary condition we obtain:
+
+\begin{align}
+    \label{eq:}
+    \max  \sum_{i=1}^n \alpha_i & k(x_i, x_i) + \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j k(x_i, x_j) \\
+     \textrm{s.t. } & \sum_{i=1}^n \alpha_i = 1 \\
+                    & \forall_{i=0}^n \quad \frac{1}{n \nu} \ge  \alpha_i \ge 0\\
+     \textrm{ and the center }&\textrm{is given by } c = \sum_{i=1}^n \alpha_i \phi(x_i)
+\end{align}
