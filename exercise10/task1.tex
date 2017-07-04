@@ -1,0 +1,23 @@
+\subsection*{1}
+The kernel $k(x_i, x_j)$ is positive semi-definite since
+\begin{align*}
+	&\sum_i \sum_j \alpha_i \alpha_j k(x_i, x_j) = 
+	\sum_i \sum_j \alpha_i \alpha_j \sum_{l=1}^L \beta_l k_l(x_i, x_j)\\
+	=&\sum_{l=1}^L \underbrace{\beta_l}_{\geq 0} \underbrace{\sum_i \sum_j \alpha_i \alpha_j k_l(x_i, x_j)}_{\geq 0} \geq 0 \quad .
+\end{align*}
+
+The feature map can be given by 
+%\begin{align*}
+%	\phi(x) = \left(\sqrt{\beta_{l(\alpha)}} \phi_{l(\alpha), d(\alpha)}(x)\right)_{\alpha = 0...(L\cdot D - 1)}
+%\end{align*}
+
+\begin{align*}
+	\vec{\phi}(x) =
+	\begin{pmatrix}
+	\sqrt{\beta_1}\vec{\phi}_1(x)\\
+	...\\
+	\sqrt{\beta_i}\vec{\phi}_i(x)\\
+	...\\
+	\sqrt{\beta_L}\vec{\phi}_L(x)
+	\end{pmatrix}
+\end{align*}

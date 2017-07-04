@@ -1,0 +1,22 @@
+\subsection*{2}
+We provide a feature map with the requested properties:
+\begin{align*}
+	\vec{\phi}_s(x,y) \in \R^{C\cdot d}\\
+\vec{\phi}_s(x,y) = 	\begin{pmatrix}
+		\vec{\phi}(x)\delta_{1y}\\...\\\vec{\phi}(x)\delta_{iy}\\...\\ \vec{\phi}(x)\delta_{Cy}
+	\end{pmatrix}
+\end{align*}
+with the Kronecker delta
+\begin{align*}
+	\delta_{ij} =
+	\begin{cases}
+		1\quad i = j\\
+		0\quad i\neq j	
+	\end{cases}\quad .
+\end{align*}
+
+Using this feature map, one can easily show that the kernel is positive semi-definite:
+\begin{align*}
+&\sum_i \sum_j \alpha_i \alpha_j k((x_i,y_i), (x_j,y_j)) = \sum_i \sum_j \alpha_i \alpha_j  \left[\vec{\phi}_s(x_i,y_i)^\text{T}\cdot \vec{\phi}_s(x_j,y_j)\right]\\
+	= &\left[\sum_i  \alpha_i  \vec{\phi}_s(x_i,y_i)\right]^\text{T} \cdot \left[\sum_j \alpha_j \vec{\phi}_s(x_j,y_j)\right] = \left|\left|\sum_i  \alpha_i  \vec{\phi}_s(x_i,y_i)\right|\right|^2 \geq 0
+\end{align*}
